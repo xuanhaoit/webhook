@@ -35,7 +35,7 @@ def log_request(message: str, method: str):
         logger.error(e)
 
 
-@app.get("/ui", response_class=HTMLResponse)
+@app.get("/", response_class=HTMLResponse)
 async def get_html():
     return """
     <html>
@@ -47,8 +47,8 @@ async def get_html():
     """
 
 
-@app.api_route("/", methods=["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"])
-async def root(request: Request):
+@app.api_route("/send", methods=["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"])
+async def webhook(request: Request):
     try:
         method = request.method
         body = await request.body()
